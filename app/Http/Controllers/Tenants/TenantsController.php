@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tenants;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Tenants;
 
 class TenantsController extends Controller
 {
@@ -14,7 +15,8 @@ class TenantsController extends Controller
      */
     public function index()
     {
-        return view('dashboard/tenants/all');
+        $tenants = Tenants::get();
+        return view('dashboard/tenants/all',compact('tenants'));
     }
 
     /**
@@ -35,7 +37,10 @@ class TenantsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        Tenants::create($data);
+        
+        return redirect()->back();
     }
 
     /**

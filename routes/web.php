@@ -33,4 +33,5 @@ Route::group(['middleware' => ['auth']], function () {
 
 Auth::routes();
 
+Route::resource('tenants', 'Tenants\TenantsController');
 Route::get('/home', 'HomeController@index')->name('home');
